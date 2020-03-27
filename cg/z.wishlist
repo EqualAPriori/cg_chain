@@ -1,0 +1,6 @@
+CG to...
+
+bonds: harmonic, harmonic + offset
+exv: spline, gaussian
+Ree: extra applied force? but this doesn't work well with FTS
+

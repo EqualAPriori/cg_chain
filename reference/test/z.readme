@@ -1,0 +1,5 @@
+python ../run.py -np 1 -N 1000 -prodtime 10 -eqtime 10 -bond g
+mv minimized.pdb init_gaussian.pdb
+python ../run.py -np 1 -N 1000 -prodtime 10 -eqtime 10 -bond kg -initial init_gaussian.pdb
+
+python ../run.py -np 1 -N 1000 -prodtime 1000 -eqtime 1000 -bond kg -initial zig

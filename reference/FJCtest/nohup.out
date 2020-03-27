@@ -1,0 +1,34 @@
+
+=== Parameters in real units ===
+temperature:120.272212514 K
+pressure:1.66053878316e-24 kJ/(nm**3)
+friction:1.0 /ps
+barostat interval:1000
+nonbondedCutoff: 24.0 nm
+
+=== Creating System ===
+Adding 100 polymer atoms into system
+Adding 0 solvent atoms into system
+Total number of paricles in system: 100
+Box dimensions [Quantity(value=10, unit=nanometer), Quantity(value=10, unit=nanometer), Quantity(value=10, unit=nanometer)]
+
+=== Creating topology ===
+... constrained bond length for FJC
+
+=== Creating Nonbonded Force===
+finished building zig zag chain
+initial energy: 5.00085767253 kJ/mol
+
+=== Initialize and run NVT simulation ===
+...FJC, applying constraints first
+Running energy minimization
+minimized energy: 5.00085767253 kJ/mol
+
+Running equilibration for 200000 steps (10000.0 tau), log every 200 steps (10.0 tau)
+#"Progress (%)"	"Step"	"Potential Energy (kJ/mole)"	"Kinetic Energy (kJ/mole)"	"Total Energy (kJ/mole)"	"Temperature (K)"	"Box Volume (nm^3)"	"Density (g/mL)"	"Speed (ns/day)"	"Time Remaining"
+25.0%	100000	6.20104798696	95.4832780878	101.684326075	114.268508594	1000.0	0.000166053878234	0	--
+50.0%	200000	7.29395118682	100.118375989	107.412327176	119.815508394	1000.0	0.000166053878234	1.83e+03	7:51
+
+Running production for 200000 steps (10000.0 tau), log every 200 steps (10.0 tau)
+25.0%	100000	6.87944985069	89.3594662741	96.2389161248	106.93990764	1000.0	0.000166053878234	1.88e+03	--
+50.0%	200000	5.92577487735	101.075922775	107.001697653	120.961441433	1000.0	0.000166053878234	1.83e+03	23:34

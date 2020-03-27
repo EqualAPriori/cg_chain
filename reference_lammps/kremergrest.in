@@ -1,0 +1,131 @@
+# Coarse-grained polymer simulation
+# Created 2018.02.16
+
+# MODEL A, IMPLICIT SOLVENT
+
+#package gpu 1 neigh no
+units		lj
+atom_style	hybrid bond sphere
+dimension	3
+boundary f f f
+read_data polymer.data
+# TRISTAN BELOW IS THE READ_RESTART LINE THAT YOU CAN UNCOMMENT IF YOU NEED TO RESTART A SIMULATION
+#read_restart SeedFile.restart
+
+
+# -----------------------------------------------------
+# Length [NANOMETERS]
+#lattice bcc 0.6303
+#region box block 0 6 0 6 0 6
+#create_box	1 box
+#create_atoms 1 box 
+#create_atoms 1 random 20 383838 box
+#group 1 id 1
+# changes 96% of the atoms to a new type
+#set		group all type/fraction 2 0.96 29984
+set		type 1 mass 1
+
+# skipped type 1 to get the colloids to be a blue color 
+group PENDS type 1
+group MOLECULE molecule <= 3
+
+# -------------- DEFINE POTENTIALS -----------------------
+
+# harmonic bond
+bond_style fene
+bond_coeff 1 30.0 1.5 1.0 1.0
+
+
+# Interatomic potential
+#pair_style table/gpu linear 2000 
+#pair_coeff * * pair11B0.1_2000.txt Gauss11 6.5
+#pair_style gauss 6.5
+pair_style lj/cut 1.122462048
+pair_modify shift yes
+pair_coefficient 1 1 1.0 1.0 1.122462048
+
+
+# PAIR WRITE TO CHECK PMF/FORCE
+#pair_write 1 1 1400 r 0.001 12 pair11.txt LJ11
+
+# Include bonded lj interactions! #Note FENE is shortcut keyword to set to 0.0 1.0 1.0, since the 1-2 WCA interactions are in bond_style fene already
+#special_bonds lj 1.0 1.0 1.0
+special_bonds fene
+
+# ----------- NEIGHBOR LIST --------------------------------------
+neighbor 1 bin
+neigh_modify every 1 delay 2 check yes
+neigh_modify one 1000000
+neigh_modify page 10000000
+
+
+# ----------- THERMOSTATS AND SIMULATION INITIALIZATION ----------
+
+# Velocity Initialization
+velocity all create 1 87287 dist gaussian
+
+# NVT THERMOSTATING [REDUCED TEMPERATURE] 
+#fix 		1 all nvt temp 1 1 0.1
+
+# Together these fixes perform Langevin dynamics 
+fix 1 all nve
+# Temperature set to 1 with damping parameter of 1.0
+fix 2 all langevin 1.0 1.0 1.0 54324
+
+# ---------- OUTPUT -----------------------------------------------
+
+
+# SET DUMPS AND COMPUTES
+#dump 3 allcol movie 10 movie.mpg type type ssao yes 4539 0.8 adiam 1 &
+#		zoom 1 center d 0.5 0.5 0.5 box no 0.0 shiny 0.85 size 2400 1780
+#dump_modify 3 backcolor white bitrate 2400 framerate 24
+
+
+#dump 1 all atom 40 dump.relax
+#dump 1 all custom 500 traj.xyz id type xu yu zu
+
+#dump 2 all image 500 image.*.jpg type diameter size 1920 1200 zoom 1.0 center d 0.5 0.5 0.5 box yes 0.025 ssao yes 4530 0.75 
+#dump_modify 2 backcolor white 
+
+
+dump 3 all atom 100 dump.coords.dat 
+dump_modify 3 scale no sort id 
+
+# --------- COMPUTES -------------
+#compute 1 MOLECULE msd com yes       # center-of-mass correction
+#compute myRDF all rdf 400      # Radial Distribution function
+#compute VACF MOLECULE vacf
+
+# --------- THERMODYNAMICS OUTPUT -------
+thermo_style custom step temp ke pe etotal press vol
+thermo		10
+
+#restart 5000 f1.restart f2.restart
+#reset_timestep 0
+
+#fix 2 all temp/rescale 200 1.0 1.0 0.005 1.0
+
+# ------------- WARM-UP --------------------
+timestep	0.01
+run		1000
+
+#timestep	0.0005
+#run		500
+
+# --------- PRODUCTION AVERAGING -------------
+
+#unfix 2
+
+#fix 3 all ave/time 100 500 50000 c_1 file tmp.msd mode vector
+#fix 4 all ave/time 100 500 1000 c_myRDF[*] file tmp.rdf mode vector
+#fix 5 all ave/time 1000 10000 10000000 c_1 file tmp.msd mode vector
+
+
+# ------------- MINIMIZE -------------------
+#minimize 1E-1 1E-1 100 100
+
+# ------------- PRODUCTION RUNS --------------------
+
+timestep	0.01
+run		20000
+

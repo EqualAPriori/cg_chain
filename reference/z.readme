@@ -1,0 +1,38 @@
+=== example commands ===
+python run.py -np 1 -N 10 -prodtime 100 -eqtime 100
+
+python ../run.py -np 1 -N 10 -prodtime 10 -eqtime 10 -bond g
+mv minimized.pdb initgaussian.pdb
+python ../run.py -np 1 -N 10 -prodtime 10 -eqtime 10 -bond kg -initial initgaussian.pdb
+
+python ../run.py -np 1 -N 1000 -prodtime 1000 -eqtime 1000 -bond kg -initial zig
+
+
+python ../run.py -np 1 -N 2 -prodtime 10 -eqtime 10 -trajfreq 1 -bond fjc -initial test -asmear 0.398 -usmear 6
+python ../run.py -np 100 -N 2 -prodtime 100 -eqtime 100 -trajfreq 1 -bond fjc -initial zig -asmear 0.398 -usmear 6 -dt 0.1
+
+python ../run.py -np 1 -N 100 -prodtime 10000 -eqtime 10000 -trajfreq 10 -bond fjc -initial zig -asmear 0.3989422803 -usmear 6.038 -dt 0.05
+
+# adjusting usmear to mantain same bead-bead second virial coefficient as Kremer-Grest WCA
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 0.3989422803 -usmear 6.0383990 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 0.5 -usmear 5.1215037 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 0.75 -usmear 4.5999855 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 1.0 -usmear 4.4879377 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 1.5 -usmear 4.4324237 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 2.0 -usmear 4.4191116 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 3.0 -usmear 4.4123058 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 4.0 -usmear 4.4106522 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 6.0 -usmear 4.40980355 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 8.0 -usmear 4.4095970 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 100000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 10.0 -usmear 4.40952347 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 15.0 -usmear 4.4094692 -dt 0.05
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 20.0 -usmear 4.409455956 -dt 0.05
+
+=== some more options: ===
+parser.add_argument("-np", default=1, type=int, help="# polymer chains")
+parser.add_argument("-ns", default=0, type=int, help="# solvent")
+parser.add_argument("-N", default=2, type=int, help="degree of polymerization")
+parser.add_argument("-bond", default='kg', type=str, choices=['kg','kremer','kremer-grest','g','h','gaussian','harmonic'], help="bond type")
+parser.add_argument("-prodtime", default=1e5, type=int, help="production time (in tau)")
+parser.add_argument("-eqtime", default=1e4, type=int, help="equilibration time (in tau)")
+parser.add_argument("-L",default=10, type=float, help="boxL (irrelevant if not periodic)")

@@ -1,0 +1,1 @@
+python ../run.py -np 1 -N 100 -prodtime 10000 -eqtime 10000 -trajfreq 10 -bond fjc -initial zig -asmear 0.3989422803 -usmear 6.038 -dt 0.05

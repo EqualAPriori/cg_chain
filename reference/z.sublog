@@ -1,0 +1,28 @@
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 0.3989422803 -usmear 6.0383990 -dt 0.05
+4227508.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 0.5 -usmear 5.1215037 -dt 0.05
+4227509.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 0.75 -usmear 4.5999855 -dt 0.05
+4227510.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 1.0 -usmear 4.4879377 -dt 0.05
+4227511.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 1.5 -usmear 4.4324237 -dt 0.05
+4227512.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 2.0 -usmear 4.4191116 -dt 0.05
+4227513.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 3.0 -usmear 4.4123058 -dt 0.05
+4227514.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 4.0 -usmear 4.4106522 -dt 0.05
+4227515.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 6.0 -usmear 4.40980355 -dt 0.05
+4227516.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 8.0 -usmear 4.4095970 -dt 0.05
+4227517.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 10.0 -usmear 4.40952347 -dt 0.05
+4227518.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 15.0 -usmear 4.4094692 -dt 0.05
+4227519.braid.cnsi.ucsb.edu
+python ../run.py -np 1 -N 100 -prodtime 250000 -eqtime 10000 -trajfreq 100 -bond fjc -initial zig -asmear 20.0 -usmear 4.409455956 -dt 0.05
+4227520.braid.cnsi.ucsb.edu
+
+
